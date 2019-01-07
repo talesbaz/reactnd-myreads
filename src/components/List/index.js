@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import Shelf from '../Shelf';
 
-const List = ({ books }) => {
+const List = ({ books, onChangeShelf, handleCurrentStatus }) => {
 
   const bookStatus = [
     {
@@ -28,7 +28,7 @@ const List = ({ books }) => {
           bookStatus.map(category => {
             const bookShelf = books.filter(book => book.shelf === category.status);
             return (
-              <div key={category.status}><Shelf title={category.title} books={bookShelf} /></div>
+              <div key={category.status}><Shelf title={category.title} books={bookShelf} onChangeShelf={onChangeShelf} handleCurrentStatus={handleCurrentStatus} /></div>
             );
           })
         }
@@ -42,7 +42,9 @@ const List = ({ books }) => {
 };
 
 List.propTypes = {
-  books: PropTypes.arrayOf(PropTypes.shape({})).isRequired
+  books: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  onChangeShelf: PropTypes.func.isRequired,
+  handleCurrentStatus: PropTypes.func.isRequired
 };
 
 export default List;

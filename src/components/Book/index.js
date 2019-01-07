@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Book = ({ book }) => {
+const Book = ({ book, onChangeShelf, handleCurrentStatus }) => {
 
   const thumb = book.imageLinks ? book.imageLinks.smallThumbnail : 'https://cdn0.iconfinder.com/data/icons/very-basic-android-l-lollipop-icon-pack/24/cancel-2-128.png';
 
@@ -12,7 +12,7 @@ const Book = ({ book }) => {
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${thumb}")` }} />
         </div>
         <div className="book-shelf-changer">
-          <select>
+          <select defaultValue={typeof book.shelf === 'undefined' ? handleCurrentStatus(book) : book.shelf} onChange={event => onChangeShelf(event, book)}>
             <option value="none" disabled>Move to...</option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want to Read</option>
@@ -30,7 +30,9 @@ const Book = ({ book }) => {
 };
 
 Book.propTypes = {
-  book: PropTypes.shape({}).isRequired
+  book: PropTypes.shape({}).isRequired,
+  onChangeShelf: PropTypes.func.isRequired,
+  handleCurrentStatus: PropTypes.func.isRequired
 };
 
 export default Book;
