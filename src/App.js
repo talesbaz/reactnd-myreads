@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import * as api from './BooksAPI';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
 import './App.scss';
 
 import Search from './components/Search';
@@ -42,34 +46,53 @@ class BooksApp extends Component {
       .update(book, event.target.value)
       .then(data => {
 
-        if (!data) {
-          console.log('Erro ao atualizar o livro');
+        const toasterOptions = {
+          'position': 'bottom-right',
+          'autoClose': 2000,
+          'hideProgressBar': true,
+          'closeOnClick': true,
+          'pauseOnHover': true,
+          'draggable': false
+        };
+
+        try {
+
+          if (!data) {
+            throw new Error('Error on update book status.');
+          }
+
+          let newsBooks;
+
+          if (!book.shelf) {
+
+            newsBooks = this.state.books;
+            book.shelf = event.target.value;
+            newsBooks.push(book);
+          } else {
+
+            newsBooks = this
+              .state
+              .books
+              .map(item => {
+                if (item.id === book.id) item.shelf = event.target.value;
+
+                return item;
+              });
+          }
+
+          toast.success('Book status updated with success.', toasterOptions);
+
+          this.setState({ books: newsBooks });
+        } catch (error) {
+
+          toast.error(error, toasterOptions);
         }
 
-        let newsBooks;
-        if (!book.shelf) {
-
-          newsBooks = this.state.books;
-          book.shelf = event.target.value;
-          newsBooks.push(book);
-        } else {
-
-          newsBooks = this
-            .state
-            .books
-            .map(item => {
-              if (item.id === book.id) item.shelf = event.target.value;
-
-              return item;
-            });
-        }
-
-        this.setState({ books: newsBooks });
       });
   }
 
   /**
-   *  Manipulate the book status
+   *  Handle the book status
    *
    * @param {*} book - book instance
    * @returns void
@@ -115,6 +138,19 @@ class BooksApp extends Component {
               handleCurrentStatus={book => this.handleCurrentStatus(book)}
             />
           )}
+        />
+
+        {/* Toster notifyer */}
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange={false}
+          draggable={false}
+          pauseOnHover
         />
       </div>
     );

@@ -118,15 +118,15 @@ class Search extends Component {
         <div className="search-books-results">
 
           {query.trim().length === 0 && (
-            <h2>Utilize a caixa de texto a cima para pesquisar...</h2>
+            <h2>Use the text box above to search...</h2>
           )}
 
           {isLoading && (
-            <div className="loader">Carregando...</div>
+            <div className="loader">Loading...</div>
           )}
 
           {(!isLoading && noResults && query.trim().length !== 0) && (
-            <h3 className="error">Não foram encontrados resultados para o(s) termo(s) <i>{query}</i>.</h3>
+            <h3 className="error">No results were found for <i>{query}</i>.</h3>
           )}
 
           <ol className="books-grid">
