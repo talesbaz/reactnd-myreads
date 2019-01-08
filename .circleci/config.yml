@@ -15,9 +15,9 @@ jobs:
         - image: circleci/node:8.10
       steps:
         - restore_cache:
-            key: v1-dependencies-{{ checksum "package.json" }}
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
         - restore_cache:
-            key: v1-dependencies-{{ checksum "package.json" }}
+            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}
         - run:
             name: Lint
             command: npm run lint
