@@ -2,6 +2,7 @@
 # MyReads
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/d815625daac81b7ca487/maintainability)](https://codeclimate.com/github/talesbaz/reactnd-myreads/maintainability)
+[![CircleCI](https://circleci.com/gh/talesbaz/reactnd-myreads.svg?style=svg)](https://circleci.com/gh/talesbaz/reactnd-myreads)
 
 A very simple app to manage lists of current reading, want to read and already read books. Bootstrapped from [udacity my-reads](https://github.com/udacity/reactnd-project-myreads-starter).
 
