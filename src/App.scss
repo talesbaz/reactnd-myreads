@@ -16,6 +16,9 @@ $color-loader: $light_blue;
 // Assets path
 $assets_path: './assets/icons/';
 
+// Google Fonts
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 html {
   height: 100%;
 }
@@ -24,6 +27,7 @@ body {
   height: 100%;
   line-height: 1.5;
   background: $white;
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 }
 
 .root {
@@ -160,6 +164,11 @@ body {
 
 .book {
   width: 140px;
+  button {
+    background: none;
+    border-radius: 5px;
+    margin-top: 6px;
+  }
 }
 
 .book-title {
@@ -213,6 +222,7 @@ body {
   text-align: center;
   font-size: 0.8em;
 }
+
 
 button:active {
   border: $red;

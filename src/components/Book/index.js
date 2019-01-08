@@ -8,9 +8,7 @@ const Book = ({ book, onChangeShelf, handleCurrentStatus }) => {
   return (
     <div className="book">
       <div className="book-top">
-        <div className="book-cover">
-          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${thumb}")` }} />
-        </div>
+        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${thumb}")` }} />
         <div className="book-shelf-changer">
           <select defaultValue={typeof book.shelf === 'undefined' ? handleCurrentStatus(book) : book.shelf} onChange={event => onChangeShelf(event, book)}>
             <option value="none" disabled>Move to...</option>
@@ -25,6 +23,8 @@ const Book = ({ book, onChangeShelf, handleCurrentStatus }) => {
       {!!book.authors && book
         .authors
         .map(author => <div key={`${book.id}-${author}`} className="book-authors">{author}</div>)}
+
+      <button type="button">+ Details</button>
     </div>
   );
 };
