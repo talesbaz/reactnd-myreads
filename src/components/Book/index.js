@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Detail from '../Detail';
+
 const Book = ({ book, onChangeShelf, handleCurrentStatus }) => {
 
   const thumb = book.imageLinks ? book.imageLinks.smallThumbnail : 'https://cdn0.iconfinder.com/data/icons/very-basic-android-l-lollipop-icon-pack/24/cancel-2-128.png';
@@ -24,7 +26,8 @@ const Book = ({ book, onChangeShelf, handleCurrentStatus }) => {
         .authors
         .map(author => <div key={`${book.id}-${author}`} className="book-authors">{author}</div>)}
 
-      <button type="button">+ Details</button>
+      <Detail book={book} />
+
     </div>
   );
 };

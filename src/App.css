@@ -123,11 +123,6 @@ body {
 .book {
   width: 140px; }
 
-.book button {
-  background: none;
-  border-radius: 5px;
-  margin-top: 6px; }
-
 .book-title {
   font-size: 0.8em;
   margin-top: 10px; }

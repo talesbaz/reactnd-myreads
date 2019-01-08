@@ -38,7 +38,7 @@ class BooksApp extends Component {
    * @returns void
    * @memberof BooksApp
    */
-  onChangeShelf (event, book) {
+  onChangeShelf = (event, book) => {
 
     event.persist();
 
@@ -98,7 +98,7 @@ class BooksApp extends Component {
    * @returns void
    * @memberof BooksApp
    */
-  handleCurrentStatus (book) {
+  handleCurrentStatus = book => {
 
     const currentBooks = this
       .state

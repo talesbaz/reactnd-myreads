@@ -33,7 +33,7 @@ class Search extends Component {
    * @returns boid
    * @memberof Search
    */
-  debounce (func, wait, immediate) {
+  debounce = (func, wait, immediate) => {
 
     let timeout;
     return function () {
@@ -65,7 +65,7 @@ class Search extends Component {
    * @returns void
    * @memberof Search
    */
-  findBook (query) {
+  findBook = query => {
 
     if (query.trim().length === 0) {
       this.setState({ searchedBooks: [] });
