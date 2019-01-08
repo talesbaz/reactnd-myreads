@@ -9,6 +9,22 @@ jobs:
         - save_cache:
             key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
             paths: ~/project
+
+    build_dependencies:
+      working_directory: ~/project
+      docker:
+        - image: circleci/node:8.10
+      steps:
+        - restore_cache:
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+        - run:
+            name: Install Dependencies
+            command: npm install
+        - save_cache:
+            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}
+            paths:
+              - node_modules
+
     lint:
       working_directory: ~/project
       docker:
@@ -21,6 +37,7 @@ jobs:
         - run:
             name: Lint
             command: npm run lint
+
 workflows:
     version: 2
     lint:
@@ -30,9 +47,16 @@ workflows:
                   branches:
                     only:
                       - master
-             - lint:
+             - build_dependencies:
                 requires:
                   - checkout_code
+                filters:
+                  branches:
+                    only:
+                      - master
+             - lint:
+                requires:
+                  - build_dependencies
                 filters:
                   branches:
                     only:
