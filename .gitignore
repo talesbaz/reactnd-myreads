@@ -3,6 +3,7 @@
 /out-tsc
 /dist
 /build
+*.css
 
 # Dependencies
 /node_modules

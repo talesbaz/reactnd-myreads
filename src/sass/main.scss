@@ -1,11 +1,16 @@
 // Imports
-@import './colors';
-@import './variables';
+@import './colors.scss';
+@import './variables.scss';
 
 // Google Fonts
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 html {
+  box-sizing: border-box;
   height: 100%;
 }
 
