@@ -61,28 +61,25 @@ class BooksApp extends Component {
             throw new Error('Error on update book status.');
           }
 
-          let newsBooks;
-
           if (!book.shelf) {
 
-            newsBooks = this.state.books;
             book.shelf = event.target.value;
-            newsBooks.push(book);
+            const newBooks = [...this.state.books, book];
+            this.setState({ books: newBooks });
+
           } else {
 
-            newsBooks = this
-              .state
-              .books
+            const newBooks = this.state.books
               .map(item => {
                 if (item.id === book.id) item.shelf = event.target.value;
 
                 return item;
               });
+            this.setState({ books: newBooks });
           }
 
           toast.success('Book status updated with success.', toasterOptions);
 
-          this.setState({ books: newsBooks });
         } catch (error) {
 
           toast.error(error, toasterOptions);

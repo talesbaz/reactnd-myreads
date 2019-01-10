@@ -106,8 +106,7 @@ class Search extends Component {
               placeholder="Search by title or author"
               value={query}
               onChange={event => {
-                this.setState({ query: event.target.value });
-                this.setState({ searchedBooks: [] });
+                this.setState({ query: event.target.value, searchedBooks: [] });
                 this.updateQuery();
               }}
             />
